@@ -22,11 +22,12 @@ router.post("/signup",function(req,res){
     //
     // res.render("user/signup",{title:"注册"})
 });
+//登陆
 router.get("/signin",function(req,res){
     res.render("user/signin",{title:"登陆"})
 });
 router.post("/signin",function(req,res){
-    let user =req.body// 请求体对象,username pw email
+    let user =req.body// 请求体对象,username pw email,提交用户登陆保单
     console.log(JSON.stringify(user))
     User.findOne(user,function(err,doc){
         // console.log("=="+dec)
@@ -34,6 +35,9 @@ router.post("/signin",function(req,res){
         if(err){
             res.redirect('back');
         }else if(doc){
+            //向会话对象中写入属性user=doc
+            req.session.user=doc;
+            // req.session.user 取值
             res.redirect('/');
         }else{
             res.redirect('back');

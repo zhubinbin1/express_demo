@@ -64,10 +64,33 @@ app.use(express.static(path.resolve("node_modules")))
 header.html footer.html 分开
 `ejs的include语法:`
  
-```<%- include('include/header.html')%>
+```
+<%- include('include/header.html')%>
  首页
-<%- include('include/footer.html')%>```
+<%- include('include/footer.html')%>
+```
 
+
+
+# 创建mongodb
+```
+let mongoose = require("mongoose")
+//链接数据库
+let DB_URL = 'mongodb://localhost:27017/201701blog'
+mongoose.connect(DB_URL);
+```
+# session 处理
+
+>包括session会话
+
+```
+//请求对象上增加req.session
+app.use(session({
+    resave:true,//每次客户端请求服务器保存session
+    secret:"zhubin",//加密cookie
+    saveUninitialized:true,//保存初始化session
+}));
+```
 
 
 
