@@ -7,11 +7,11 @@ express
 ```
 >创建package.json 文件
 ```
-npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongose connect-flash multer async bootstrap -S
+npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async bootstrap -S
 ```
 >安装相应的依赖
 
-npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongose connect-flash multer async -S
+npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async -S
 - --save-dev = -D
 - --save =-S
 
