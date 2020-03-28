@@ -7,7 +7,7 @@ express
 ```
 >创建package.json 文件
 ```
-npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongose connect-flash multer async -S
+npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongose connect-flash multer async bootstrap -S
 ```
 >安装相应的依赖
 
@@ -41,6 +41,33 @@ app.listen(8080);
  * /user/signout 退出登陆
  * /user/signin 登陆
  * /article/add 发表文章
+
+ # 引用模板引擎
+ > 创建views目录 public/lib 静态目录,cs js 
+ ```
+ //设置模板引擎,指定模板后缀以html为结尾
+app.set('view engine','html');
+//指定模板路径 指定根目录
+app.set('views',path.resolve(__dirname,"views"));
+//指定html类型模板用egs方法渲染
+app.engine('html',require("ejs").__express);
+ ```
+> app.use(express.static(path.resolve("node_modules")))
+
+指定引用静态文件目录
+```
+//此静态文件中间件会拦截客户端对于静态文件的请求,如boostap.css 
+//,然后在当前目录的node_modules下寻找此文件,如果找到,返回客户端,并结束请求 <%=title%>
+app.use(express.static(path.resolve("node_modules")))
+```
+
+header.html footer.html 分开
+`ejs的include语法:`
+ 
+```<%- include('include/header.html')%>
+ 首页
+<%- include('include/footer.html')%>```
+
 
 
 
