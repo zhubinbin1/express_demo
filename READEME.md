@@ -131,5 +131,34 @@ router.post("/add", checkLogin, function (req, res) {
 })
 
 
+# 文章列表
+查关联库 populate user是与ref对应   user:{type:ObjectId,ref:'user'}
+```
+    Article.find().populate('user').exec(function(err,articles){
+        // console.log(articles,err)
+        res.render("index",{title:"首页",articles})
+    })
+```
 
-
+# 删除文章
+```
+router.get("/delete/:_id",function(req, res){
+    let _id = req.params._id;//获取
+    Article.remove({_id},function(err,article){
+        if(err){
+            req.flash("error", err);
+            res.redirect('back')
+        }else{
+            req.flash("success", "删除成功");
+            res.redirect("/");
+        }
+    })
+})
+    //如果有值并且userid相同
+    <%if(user && article.user==user._id){%>
+    ///...
+        <a href="/article/delete/<%=article._id%>" class="btn btn-danger">删除</a>
+    <%
+    }
+    %>
+```

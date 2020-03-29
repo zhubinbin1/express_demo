@@ -19,4 +19,27 @@ router.post("/add", checkLogin, function (req, res) {
         }
     })
 })
+router.get("/detail/:_id",function(req, res){
+    let _id = req.params._id;//获取
+    Article.findById(_id,function(err,article){
+        if(err){
+            req.flash("error", err);
+            res.redirect('back')
+        }else{
+            res.render("article/detail",{title:"详情",article});
+        }
+    })
+})
+router.get("/delete/:_id",function(req, res){
+    let _id = req.params._id;//获取
+    Article.remove({_id},function(err,article){
+        if(err){
+            req.flash("error", err);
+            res.redirect('back')
+        }else{
+            req.flash("success", "删除成功");
+            res.redirect("/");
+        }
+    })
+})
 module.exports = router;
