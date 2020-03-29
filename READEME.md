@@ -14,6 +14,15 @@ npm install body-parser cookie-parser debug ejs express morgan serve-favicon exp
 npm install body-parser cookie-parser debug ejs express morgan serve-favicon express-session connect-mongo mongoose connect-flash multer async -S
 - --save-dev = -D
 - --save =-S
+> 安装nodemon 
+nodemon可以不用多次重启
+1,执行nodemon server.js,启动服务
+```
+nodemon server.js
+```
+2,浏览器中 访问 http://localhost:8080/
+3,如果链接不上数据库,执行 mongo
+如果需要指定路径 需要mongod --dbpath “绝对路径”
 
 # 创建并初始化git
 ```
@@ -201,3 +210,13 @@ let MongoStore = require("connect-mongo")(session)
         //数据持久化,将配置文件放入数据库中,数据库中会多sessions
         //否则启动服务就会再次需要登陆
     })
+
+
+
+# 其他问题深入
+
+mongodb 
+ejs
+mongoose 
+epress use ...第三方插件等使用
+form表单等h5相关标签
