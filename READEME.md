@@ -140,7 +140,7 @@ router.post("/add", checkLogin, function (req, res) {
     })
 ```
 
-# 删除文章
+## 删除文章
 ```
 router.get("/delete/:_id",function(req, res){
     let _id = req.params._id;//获取
@@ -154,11 +154,29 @@ router.get("/delete/:_id",function(req, res){
         }
     })
 })
-    //如果有值并且userid相同
+```
+如果有值并且userid相同
+```
     <%if(user && article.user==user._id){%>
-    ///...
         <a href="/article/delete/<%=article._id%>" class="btn btn-danger">删除</a>
     <%
     }
     %>
 ```
+更新post, Article.update
+```
+Article.update({_id},article,function(err,result){
+        if(err){
+            req.flash("error", err);
+            res.redirect('back')
+        }else{
+            req.flash("success", "更新成功");
+            res.redirect("/article/detail/"+_id)
+        }
+    })
+```
+
+## 搜索
+form action="/" 增加action .所有提交都在/路径下
+数据库查找,title or content有一个满足即可
+ query["$or"] = [{ title: new RegExp(keyword) }, { content: new RegExp(keyword) };

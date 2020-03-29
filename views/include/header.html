@@ -35,6 +35,16 @@
                     <li><a href="/user/signin">登陆</a></li>
                     <%}%>
                 </ul>
+                <form action="/" role="search" class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="keyword"
+                        value="<%= keyword%>"
+                        placeholder="请输入关键字">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        搜索
+                    </button>
+                </form>
                 <%if(user){%>
                 <ul class="nav">
                         <li><a href="/">
