@@ -84,13 +84,14 @@ mongoose.connect(DB_URL);
 >包括session会话
 
 ```
-//请求对象上增加req.session
+//请求对象上增加req.session, 存放内存
 app.use(session({
     resave:true,//每次客户端请求服务器保存session
     secret:"zhubin",//加密cookie
     saveUninitialized:true,//保存初始化session
 }));
 ```
+
 
 
 
