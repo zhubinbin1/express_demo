@@ -6,7 +6,9 @@ let user = require("./routes/user");
 let article = require("./routes/article")
 let path = require("path")
 let bodyparser = require("body-parser")
-let session = require('express-session')//绘画中间件
+let session = require('express-session')//会话中间件
+//消息提示中间件,flash 闪,放在session一下
+let flash = require("connect-flash")
 let app = express();
 //请求对象上增加req.session
 app.use(session({
@@ -14,6 +16,8 @@ app.use(session({
     secret:"zhubin",//加密cookie
     saveUninitialized:true,//保存初始化session
 }));
+//依赖session功能,放在app.use(session)一下,赋值req.flash(type,msg) 取req.flash(type)
+app.use(flash());
 //设置模板引擎,指定模板后缀以html为结尾
 app.set('view engine', 'html');
 //解析客户端提交过来的请求体,并转换对象给req.body
@@ -28,6 +32,8 @@ app.use(express.static(path.resolve("node_modules")))
 app.use(function(req,res,next){
     //渲染模版的req.locals. 公共变量
     res.locals.user = req.session.user;
+    res.locals.success = req.flash("success").toString();
+    res.locals.error = req.flash("error").toString();
     next();
 })
 /***
