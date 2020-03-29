@@ -7,7 +7,7 @@
                     标题
                 </label>
                 <div>
-                    <input required type="text" class="form-control" id="title" name="title">
+                    <input required type="text" class="form-control" id="title" name="title" value="<%=article.title%>">
                 </div>
             </div>
             <div class="col-form-label form-group">
@@ -16,7 +16,8 @@
                 </label>
                 <div>
                     <textarea cols="50" role="50" id="content" name="content">
-                        </textarea>
+                            <%=article.content%>
+                    </textarea>
                 </div>
             </div>
             <div class="col-form-label col-sm-offset-3">
