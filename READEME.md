@@ -16,6 +16,8 @@ npm install body-parser cookie-parser debug ejs express morgan serve-favicon exp
 - --save =-S
 > 安装nodemon 
 nodemon可以不用多次重启
+
+# 项目启动
 1,执行nodemon server.js,启动服务
 ```
 nodemon server.js
@@ -23,6 +25,7 @@ nodemon server.js
 2,浏览器中 访问 http://localhost:8080/
 3,如果链接不上数据库,执行 mongo
 如果需要指定路径 需要mongod --dbpath “绝对路径”
+4,访问到后,可以先注册,再登陆,再添加文章
 
 # 创建并初始化git
 ```
