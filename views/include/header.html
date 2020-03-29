@@ -7,6 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%=title%></title>
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+    <style>
+        img{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,6 +35,14 @@
                     <li><a href="/user/signin">登陆</a></li>
                     <%}%>
                 </ul>
+                <%if(user){%>
+                <ul class="nav">
+                        <li><a href="/">
+                        <img src="<%=user.avatar%>" alt="">
+                            <%=user.username%>
+                        </a></li>
+                </ul>
+                <%}%>
             </div>
         </div>
     </nav>

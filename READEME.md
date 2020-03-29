@@ -91,8 +91,19 @@ app.use(session({
     saveUninitialized:true,//保存初始化session
 }));
 ```
+//依赖session功能,放在app.use(session)一下,赋值req.flash(type,msg) 取req.flash(type)
+app.use(flash());
+res.locals.success = req.flash("success").toString();
 
 
+# 上传图片
+form增加
+enctype="multipart/form-data"
+let multer = require("multer")//上传图片,如何使用看node-modules 的readme
+let upload = multer({dest:'public/uploads'})
+
+req.file=>
+{"fieldname":"avatar","originalname":"icon_Choice_0 Copy 2@3x.png","encoding":"7bit","mimetype":"image/png","destination":"public/uploads","filename":"d32ac9d3e71ba9a4c9f74f29d354393f","path":"public/uploads/d32ac9d3e71ba9a4c9f74f29d354393f","size":2331}
 
 
 

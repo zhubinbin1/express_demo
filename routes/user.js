@@ -1,6 +1,8 @@
 let express = require("express")
 let router = express.Router();
 let {User} = require("../model/index");
+let multer = require("multer")//上传图片
+let upload = multer({dest:'public/uploads'})
 let {checkNotLogin,checkLogin} = require("../auth")
 /***
  * 绘制注册模版(username password email)
@@ -10,9 +12,11 @@ let {checkNotLogin,checkLogin} = require("../auth")
 router.get("/signup",checkNotLogin,function(req,res){
     res.render("user/signup",{title:"注册"})
 });
-router.post("/signup",checkNotLogin,function(req,res){
+//表单只有一个上传字段single ,avatar对应表单上传文件name
+router.post("/signup",checkNotLogin,upload.single('avatar'),function(req,res){
     let user =req.body// 请求体对象,username pw email
-    // console.log(JSON.stringify(user))
+    user.avatar = `/uploads/${req.file.filename}`;
+    console.log("==>"+JSON.stringify(req.file))
     User.create(user,function(err,doc){//_id __v
         if(err){
             //消息类型是error, 内容是失败,存放的是数组
@@ -25,7 +29,7 @@ router.post("/signup",checkNotLogin,function(req,res){
     });
 });
 //登陆
-router.get("/signin",checkNotLogin,function(req,res){
+router.get("/signin",function(req,res){
     res.render("user/signin",{title:"登陆"})
 });
 router.post("/signin",checkNotLogin,function(req,res){

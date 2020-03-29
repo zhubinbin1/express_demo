@@ -6,6 +6,7 @@ let user = require("./routes/user");
 let article = require("./routes/article")
 let path = require("path")
 let bodyparser = require("body-parser")
+
 let session = require('express-session')//会话中间件
 //消息提示中间件,flash 闪,放在session一下
 let flash = require("connect-flash")
@@ -14,6 +15,9 @@ let app = express();
 app.use(session({
     resave:true,//每次客户端请求服务器保存session
     secret:"zhubin",//加密cookie
+    cookie:{
+        maxAge:36000*1000,//指定cookie过期时间
+    },
     saveUninitialized:true,//保存初始化session
 }));
 //依赖session功能,放在app.use(session)一下,赋值req.flash(type,msg) 取req.flash(type)
@@ -29,6 +33,7 @@ app.engine('html', require("ejs").__express);
 //此静态文件中间件会拦截客户端对于静态文件的请求,如boostap.css 
 //,然后在当前目录的node_modules下寻找此文件,如果找到,返回客户端,并结束请求 <%=title%>
 app.use(express.static(path.resolve("node_modules")))
+app.use(express.static(path.resolve("public")))
 app.use(function(req,res,next){
     //渲染模版的req.locals. 公共变量
     res.locals.user = req.session.user;

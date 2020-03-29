@@ -1,7 +1,7 @@
 <%- include('../include/header.html')%>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-        <form method="POST" role="form" class="form-horizontal">
+        <form method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
             <div class="col-form-label form-group">
                 <label for="username">
                     用户名
@@ -26,6 +26,14 @@
                     <input required type="email" class="form-control" id="email" name="email">
                 </div>
             </div>
+            <div class="col-form-label form-group">
+                    <label for="avatar">
+                        头像
+                    </label>
+                    <div>
+                        <input required type="file" class="form-control" id="avatar" name="avatar">
+                    </div>
+                </div>
             <div class="col-form-label col-sm-offset-3">
 
                 <div>
