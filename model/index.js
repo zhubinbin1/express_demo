@@ -3,7 +3,7 @@
 let mongoose = require("mongoose")
 let ObjectId = mongoose.Schema.Types.ObjectId;
 //链接数据库
-let DB_URL = 'mongodb://localhost:27017/201701blog'
+let DB_URL = require("../config").dbUrl
 mongoose.Promise = Promise;
 mongoose.connect(DB_URL);
 /**

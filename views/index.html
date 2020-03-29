@@ -1,7 +1,17 @@
 <%- include('include/header.html')%>
-
 <%
 articles.forEach(function(article){%>
+<style>
+    .page {
+        display: inline;
+        padding: 0.5rem;
+        background-color: aliceblue;
+    }
+
+    .page-active {
+        background-color: aqua;
+    }
+</style>
 <div class="media">
     <div class="media-object">
         <a href="">
@@ -10,7 +20,7 @@ articles.forEach(function(article){%>
     </div>
     <div class="media-body">
         <h3 class="media-handing">
-           <a href="/article/detail/<%= article._id%>"> <%=article.title%></a>
+            <a href="/article/detail/<%= article._id%>"> <%=article.title%></a>
         </h3>
         <p>
             <%=article.content%>
@@ -24,4 +34,21 @@ articles.forEach(function(article){%>
 <%
 })
 %>
+<ul>
+    <% if(pageNum>1){%>
+    <li class="page >"><a href="/?pageNum=<%=pageNum-1%>">上一页</a></li>
+    <%
+    }%>
+    <% 
+    for(let i=1;i<=totalPages;i++){%>
+    <li class="page <%=i==pageNum?'page-active':''%>"><a href="/?pageNum=<%=i%>"><%=i%></a></li>
+    <% 
+    }
+    %>
+    <% if(pageNum<totalPages){%>
+    <li class="page"><a href="/?pageNum=<%=pageNum+1%>">下一页</a></li>
+    <%
+    }%>
+
+</ul>
 <%- include('include/footer.html')%>

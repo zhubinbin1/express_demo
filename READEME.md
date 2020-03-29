@@ -180,3 +180,24 @@ Article.update({_id},article,function(err,result){
 form action="/" 增加action .所有提交都在/路径下
 数据库查找,title or content有一个满足即可
  query["$or"] = [{ title: new RegExp(keyword) }, { content: new RegExp(keyword) };
+
+ ## 分页
+
+    Article.count(query,function(err,count){
+        Article.find(query).populate('user').sort({createAt:-1}).skip((pageNum-1)*pageSize).limit(pageSize).exec(function (err, articles) {
+            res.render("index", {
+            title: "首页", 
+            articles ,//页码内容
+            pageNum,//当前页码
+            pageSize,//每页数量
+            totalPages:Math.ceil(count/pageSize),//总页数
+            keyword})//关键字
+        })
+    })
+    最后需要在index.html 中布局page页码
+let MongoStore = require("connect-mongo")(session)
+  store:new MongoStore({
+        url:require("./config").dbUrl
+        //数据持久化,将配置文件放入数据库中,数据库中会多sessions
+        //否则启动服务就会再次需要登陆
+    })
