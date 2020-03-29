@@ -1,3 +1,31 @@
 <%- include('../include/header.html')%>
-发表
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form method="POST" role="form" class="form-horizontal">
+            <div class="col-form-label form-group">
+                <label for="title">
+                    标题
+                </label>
+                <div>
+                    <input required type="text" class="form-control" id="title" name="title">
+                </div>
+            </div>
+            <div class="col-form-label form-group">
+                <label for="content">
+                    内容
+                </label>
+                <div>
+                    <textarea cols="50" role="50" id="content" name="content">
+                        </textarea>
+                </div>
+            </div>
+            <div class="col-form-label col-sm-offset-3">
+
+                <div>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <%- include('../include/footer.html')%>

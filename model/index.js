@@ -1,6 +1,7 @@
 
 
 let mongoose = require("mongoose")
+let ObjectId = mongoose.Schema.Types.ObjectId;
 //链接数据库
 let DB_URL = 'mongodb://localhost:27017/201701blog'
 mongoose.connect(DB_URL);
@@ -33,8 +34,13 @@ let UserSchema = new mongoose.Schema({
 });
 //定义用户模型,
 let User =mongoose.model('user',UserSchema);
+let ArticleSchema = new mongoose.Schema({
+    title:String,//标题
+    content:String,//内容
+    createAt:{type:Date,default:Date.now},//创建时间
+    user:{type:ObjectId,ref:'User'},//外键,文章作者用户表主键(_id)
+});
+let Article = mongoose.model('article',ArticleSchema);
+exports.Article = Article
 //把用户模型挂载导出对象
-// export{
-//     User
-// }
 exports.User = User

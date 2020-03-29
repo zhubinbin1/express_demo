@@ -105,6 +105,30 @@ let upload = multer({dest:'public/uploads'})
 req.file=>
 {"fieldname":"avatar","originalname":"icon_Choice_0 Copy 2@3x.png","encoding":"7bit","mimetype":"image/png","destination":"public/uploads","filename":"d32ac9d3e71ba9a4c9f74f29d354393f","path":"public/uploads/d32ac9d3e71ba9a4c9f74f29d354393f","size":2331}
 
+# 发表文章
+
+//定义用户模型,
+let User =mongoose.model('user',UserSchema);
+let ArticleSchema = new mongoose.Schema({
+    title:String,//标题
+    content:String,//内容
+    createAt:{type:Date,default:Date.now},//创建时间
+    user:{type:ObjectId,ref:'User'},//外键,文章作者用户表主键(_id)
+});
+
+router.post("/add", checkLogin, function (req, res) {
+    let article = req.body
+    article.user = req.session.user._id;//文章作者,当前登陆用户
+    Article.create(article, function (err, doc) {
+        if (err) {
+            req.flash("error", err);
+            res.redirect('back')
+        } else {
+            req.flash("success", "发表成功");
+            res.redirect('/')
+        }
+    })
+})
 
 
 
