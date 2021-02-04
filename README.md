@@ -25,6 +25,8 @@ nodemon server.js
 2,浏览器中 访问 http://localhost:8080/
 3,如果链接不上数据库,执行 mongo
 如果需要指定路径 需要mongod --dbpath “绝对路径”
+---mongod报错的原因是--dbpath没有指定
+首先启动数据库服务--- mongod --dbpath “绝对路径”
 4,访问到后,可以先注册,再登陆,再添加文章
 
 # 创建并初始化git
